@@ -9,7 +9,6 @@
     <script>
         function getComputerChoice () {
             let choice = Math.floor(Math.random() * 3)
-            console.log(choice)
             if (choice === 0) {
                 return "rock";
             } else if (choice === 1) {
@@ -23,8 +22,6 @@
         function playRockPaperScissor (playerSelection, computerSelection) {
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
-
-            console.log(computerSelection)
             
             if (playerSelection === "rock") {
                 if (computerSelection === "rock") {
@@ -53,18 +50,33 @@
             }
         }
 
-        console.log(playRockPaperScissor("Rock",getComputerChoice()))
+        function playGame (rounds) {
+            let playerScore = 0;
+
+            //Play number of rounds of rock, paper or scissors
+            for (i=0; i<rounds; i++){ 
+                playerSelection = prompt("Choose rock, paper or scissors");    // TO DO: Include Input error handling
+                let Outcome = playRockPaperScissor(playerSelection,getComputerChoice());
+                
+                if (Outcome.startsWith("You Win!")) {
+                    playerScore++;
+                } 
+                console.log(Outcome);
+            }
+
+            //Identify the winner for number of rounds played
+            if (playerScore / rounds > 0.5) {
+                return "You Win this Game";
+            } else if (playerScore / rounds === 0.5) {
+                return "It's a Tie - Play another game";
+            } else {
+                return "You Lose this Game";
+            }
+            
+        }
+
+        console.log(playGame(5));
 
     </script>
 </body>
 </html>
-
-<!--
-Write a function that plays a single round of Rock Paper Scissors. 
-The function should take two parameters - the playerSelection and computerSelection - 
-and then return a string that declares the winner or tie of the round like so: 
-"You Lose! Paper beats Rock"
-
-Make your function’s playerSelection parameter case-insensitive 
-(so users can input rock, ROCK, RocK or any other variation).
--->
