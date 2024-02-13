@@ -10,8 +10,13 @@
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
     <div>
+        <p id="plaerScore">Player Score: </p>
+        <p id="computerScore">Computer Score: </p>
+    </div>
+    
+    <div>
         <p>Below you can find the Results:</p>
-        <ul class="results">
+        <ul id="results">
 
         </ul>
     </div>
@@ -35,8 +40,6 @@
         function playRockPaperScissor (playerSelection, computerSelection) {
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
-
-            console.log(playerSelection);
             
             if (playerSelection === "rock") {
                 if (computerSelection === "rock") {
@@ -90,16 +93,29 @@
 
         }
 
+        function addScore (outcome) {
+            let entry = document.createElement("li");
+
+            //Get Current Score
+
+            let text = document.createTextNode(outcome);
+            entry.appendChild(text);
+            document.getElementById("results").appendChild(entry);
+        }
+        
         document.getElementById("rock").addEventListener("click", function () {
-            playRockPaperScissor("rock",getComputerChoice());
+            let outcome = playRockPaperScissor("rock",getComputerChoice());
+            addScore(outcome);
         }, false);
          
         document.getElementById("paper").addEventListener("click", function () {
-            playRockPaperScissor("paper",getComputerChoice());
+            let outcome = playRockPaperScissor("paper",getComputerChoice());
+            addScore(outcome);
         }, false);
 
         document.getElementById("scissors").addEventListener("click", function () {
-            playRockPaperScissor("scissors",getComputerChoice());
+            let outcome = playRockPaperScissor("scissors",getComputerChoice());
+            addScore(outcome);
         }, false);
     
 
