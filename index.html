@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <div>
+        <p>Below you can find the Results:</p>
+        <ul class="results">
+
+        </ul>
+    </div>
+
+
+
+
     <script>
         function getComputerChoice () {
             let choice = Math.floor(Math.random() * 3)
@@ -22,6 +35,8 @@
         function playRockPaperScissor (playerSelection, computerSelection) {
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
+
+            console.log(playerSelection);
             
             if (playerSelection === "rock") {
                 if (computerSelection === "rock") {
@@ -55,7 +70,7 @@
 
             //Play number of rounds of rock, paper or scissors
             for (i=0; i<rounds; i++){ 
-                playerSelection = prompt("Choose rock, paper or scissors");    // TO DO: Include Input error handling
+                playerSelection = prompt("Choose rock, paper or scissors");    
                 let Outcome = playRockPaperScissor(playerSelection,getComputerChoice());
                 
                 if (Outcome.startsWith("You Win!")) {
@@ -75,8 +90,18 @@
 
         }
 
-        let rounds = prompt("How many rounds to you want to play");
-        alert(playGame(rounds));
+        document.getElementById("rock").addEventListener("click", function () {
+            playRockPaperScissor("rock",getComputerChoice());
+        }, false);
+         
+        document.getElementById("paper").addEventListener("click", function () {
+            playRockPaperScissor("paper",getComputerChoice());
+        }, false);
+
+        document.getElementById("scissors").addEventListener("click", function () {
+            playRockPaperScissor("scissors",getComputerChoice());
+        }, false);
+    
 
     </script>
 </body>
