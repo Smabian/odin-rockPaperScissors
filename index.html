@@ -75,17 +75,27 @@
         }
 
         function updateScore (winner) {
-            console.log(winner);
 
+            let currentScore;
+
+            // Pick and Update correct Element based on Winner
             if (winner==="player") {
-                let currentPlayerScore = document.getElementById("playerScore");
-                currentPlayerScore.innerText = parseInt(currentPlayerScore.innerText) + 1;
-                return currentPlayerScore;
+                currentScore = document.getElementById("playerScore");
+                currentScore.innerText = parseInt(currentScore.innerText) + 1;
             } else if (winner==="computer") {
-                let currentComputerScore = document.getElementById("computerScore");
-                currentComputerScore.innerText = parseInt(currentComputerScore.innerText) + 1;
-                return currentComputerScore;
+                currentScore = document.getElementById("computerScore");
+                currentScore.innerText = parseInt(currentScore.innerText) + 1;
+            } else {
+                return;
             }
+
+            // Check for Game Over
+            console.log(currentScore);
+            if (parseInt(currentScore.innerText) >= 5) {
+                currentScore.innerText = " GAME OVER - This Player has Won the Game";
+            }
+            
+            return currentScore;
         }
 
         function addScore (outcome) {
